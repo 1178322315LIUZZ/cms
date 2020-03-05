@@ -32,6 +32,30 @@ public class Article implements Serializable{
 	private  Date  updated;// 文章修改时间
 	private Channel channel;
 	private Category category;
+	private Integer contentType;
+
+	private String keywords;
+
+	private String original;
+	
+	public Integer getContentType() {
+		return contentType;
+	}
+	public void setContentType(Integer contentType) {
+		this.contentType = contentType;
+	}
+	public String getKeywords() {
+		return keywords;
+	}
+	public void setKeywords(String keywords) {
+		this.keywords = keywords;
+	}
+	public String getOriginal() {
+		return original;
+	}
+	public void setOriginal(String original) {
+		this.original = original;
+	}
 	public Integer getId() {
 		return id;
 	}
