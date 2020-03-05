@@ -10,11 +10,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.zhenzhen.cms.entity.Article;
 import com.zhenzhen.cms.entity.Category;
 import com.zhenzhen.cms.entity.Channel;
@@ -36,7 +39,12 @@ public class MyController {
 	}
 	
 	@RequestMapping("articles")
-	public String articles() {
+	public String articles(Article article,Model m,@RequestParam(defaultValue = "1")int pageNum) {
+		PageHelper.startPage(pageNum, 2);
+		List<Article> list = articleService.selects(article);
+		PageInfo<Article> page=new PageInfo<Article>(list);
+		m.addAttribute("g", list);
+		m.addAttribute("pg", page);
 		return "my/articles";
 	}
 	@RequestMapping("public")
