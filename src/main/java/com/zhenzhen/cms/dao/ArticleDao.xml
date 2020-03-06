@@ -12,4 +12,7 @@
   		values(#{title},#{content},#{summary},#{userId},#{channelId},#{categoryId},
  	    #{created},#{updated},#{hits},#{hot},#{deleted},#{status},#{contentType},#{picture})
   	</insert>
+  	<select id="cha" resultType="Article">
+  		select * from cms_article where id=#{idd}
+  	</select>
   </mapper>

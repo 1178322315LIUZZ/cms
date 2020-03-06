@@ -109,8 +109,11 @@ public class MyController {
 		
 	}
 	
-	
-	
+	@RequestMapping("articlecha")
+	@ResponseBody
+	public Article cha(Integer id,Model m) {
+		return articleService.cha(id);
+	}
 	
 	
 	

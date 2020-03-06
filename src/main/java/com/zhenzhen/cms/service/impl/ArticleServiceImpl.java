@@ -22,6 +22,11 @@ public class ArticleServiceImpl implements ArticleService {
 		// TODO Auto-generated method stub
 		return articleDao.insert(article);
 	}
+
+	public Article cha(Integer id) {
+		// TODO Auto-generated method stub
+		return articleDao.cha(id);
+	}
 	
 	
 }

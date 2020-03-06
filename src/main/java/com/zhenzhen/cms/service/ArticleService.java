@@ -9,4 +9,6 @@ public interface ArticleService {
 	List<Article> selects(Article article);
 	
 	int insert(Article article);
+
+	Article cha(Integer id);
 }
