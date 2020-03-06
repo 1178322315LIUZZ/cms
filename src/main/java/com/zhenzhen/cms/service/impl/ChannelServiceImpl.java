@@ -2,27 +2,25 @@ package com.zhenzhen.cms.service.impl;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.zhenzhen.cms.dao.ChannelMapper;
+import com.zhenzhen.cms.dao.ChannelDao;
 import com.zhenzhen.cms.entity.Category;
 import com.zhenzhen.cms.entity.Channel;
 import com.zhenzhen.cms.service.ChannelService;
-
 @Service
 public class ChannelServiceImpl implements ChannelService {
-	@Resource
-	private ChannelMapper channelMapper;
+	@Autowired
+	private ChannelDao channelDao;
 
 	public List<Channel> selects() {
-
-		return channelMapper.selects();
+		// TODO Auto-generated method stub
+		return channelDao.selects();
 	}
 
-	public List<Category> selectsByCid(Integer channelId) {
-		return channelMapper.selectsByCid(channelId);
+	public List<Category> sele(Integer channelId) {
+		// TODO Auto-generated method stub
+		return channelDao.sele(channelId);
 	}
-
 }

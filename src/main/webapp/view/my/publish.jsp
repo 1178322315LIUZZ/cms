@@ -35,18 +35,17 @@ String htmlData = request.getParameter("content1") != null ? request.getParamete
  <script type="text/javascript">
  $(function(){
 	 //为栏目动态添加
-	 $.get("/my/channel/channels",function(channels){
+	 $.get("/my/channel",function(channels){
 		 $("#channel").empty();
 		 $("#channel").append("<option value='0'>请选择</option>");  
 		 for(var i in channels){
-
 			 $("#channel").append("<option value='"+channels[i].id+"'>"+channels[i].name+"</option>")  
 		 }
 	 })
 	//为栏目绑定改变事件
 	$("#channel").change(function(){
 		 var channelId = $(this).val();//获取当前改变的栏目ID
-		 $.get("/my/channel/categorys",{channelId:channelId},function(categorys){
+		 $.get("/my/categorys",{channelId:channelId},function(categorys){
 			 $("#category").empty();
 			 for(var i in categorys){
 				 $("#category").append("<option value='"+categorys[i].id+"'>"+categorys[i].name+"</option>")  
@@ -63,7 +62,7 @@ String htmlData = request.getParameter("content1") != null ? request.getParamete
 	 
 	 $.ajax({
 		 type:"post",
-		 url:"/my/article/publishs",
+		 url:"/my/fabu",
 		 processData:false,
 		 contentType:false,
 		 data:formData,

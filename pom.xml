@@ -277,7 +277,16 @@
 						<port>80</port>
 						<!--项目路径 -->
 						<host>localhost</host>
-					</httpConnector>					
+					</httpConnector>	
+					  <!-- 配置虚拟访问路径 -->
+					<contextHandlers>
+						<jettyWebAppContext>
+							<!-- 虚拟路径 访问路径 -->
+							<contextPath>/pic/</contextPath>
+							<!-- 物理路径 -->
+							<resourceBase>d:/pic/</resourceBase>
+						</jettyWebAppContext>
+					</contextHandlers>				
 					<!-- 扫描的配置. 如果项目源码改变,1秒后重启jetty -->
 					<scanIntervalSeconds>1</scanIntervalSeconds>
 				</configuration>

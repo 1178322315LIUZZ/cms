@@ -39,6 +39,9 @@
 	</div>
 </body>
  <script type="text/javascript">
+ 		
+ 		$("#center").load("/my/articles")
+ 	
   	$("li").click(function() {
 		var url=$(this).children().attr("data")
 		 $("#center").load(url) 

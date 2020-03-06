@@ -16,9 +16,9 @@ String htmlData = request.getParameter("content1") != null ? request.getParamete
 	<script>
 		KindEditor.ready(function(K) {
 			var editor1 = K.create('textarea[name="content1"]', {
-				cssPath : '/resource/kindeditor1/plugins/code/prettify.css',
-				uploadJson : '/resource/kindeditor1/jsp/upload_json.jsp',
-				fileManagerJson : '/resource/kindeditor1/jsp/file_manager_json.jsp',
+				cssPath : '/kindeditor1/plugins/code/prettify.css',
+				uploadJson : '/kindeditor1/jsp/upload_json.jsp',
+				fileManagerJson : '/kindeditor1/jsp/file_manager_json.jsp',
 				allowFileManager : true,
 				afterCreate : function() {
 					var self = this;

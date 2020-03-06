@@ -21,13 +21,45 @@
 </head>
 <body>
 	<c:forEach items="${g }" var="c">
-		<div class="media">
+		<div class="media" style="margin-top: 5px">
 			<img src="/pic/${c.picture }" class="mr-3" alt="..." width="100px" height="100px">
 			<div class="media-body">
 				<h5 class="mt-0">${c.title }</h5>
-
+			</div>
+			<div style="margin-top: 30px">
+				<!-- Button trigger modal -->
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  				详情
+			</button>
 			</div>
 		</div>
+		<hr>
 	</c:forEach>
+	<jsp:include page="/view/common/pages.jsp"></jsp:include>
+	<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
+<script type="text/javascript">
+	function goPage(page) {
+		$("#center").load("/my/articles?page="+page)
+	}
+</script>
 </html>
