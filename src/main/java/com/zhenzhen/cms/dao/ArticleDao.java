@@ -14,4 +14,6 @@ public interface ArticleDao {
 
 	Article cha(@Param("idd")Integer id);
 
+	List<Article> select(Article article);
+
 }

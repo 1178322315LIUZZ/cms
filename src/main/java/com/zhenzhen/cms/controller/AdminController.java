@@ -26,7 +26,7 @@ public class AdminController {
 	@RequestMapping("articles")
 	public String articles(Article article,Model m,@RequestParam(defaultValue = "1")int page) {
 		PageHelper.startPage(page, 2);
-		List<Article> list = articleService.selects(article);
+		List<Article> list = articleService.select(article);
 		PageInfo<Article> pa=new PageInfo<Article>(list);
 		m.addAttribute("g", list);
 		m.addAttribute("info", pa);
