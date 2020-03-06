@@ -104,32 +104,13 @@ public class MyController {
 		article.setUpdated(new Date());//默认发布时间
 		article.setContentType(0);//发布的文章类型
 		article.setHot(0);//非热点
-		
 		return articleService.insert(article);
 		
 	}
-	
 	@RequestMapping("articlecha")
 	@ResponseBody
-	public Article cha(Integer id,Model m) {
+	public Article cha(Integer id) {
 		return articleService.cha(id);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }

@@ -13,4 +13,5 @@ public interface ArticleService {
 	Article cha(Integer id);
 
 	List<Article> select(Article article);
+
 }

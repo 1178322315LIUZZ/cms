@@ -38,7 +38,7 @@
 	<jsp:include page="/view/common/pages.jsp"></jsp:include>
 	<!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel"><span id="title"></span></h5>
@@ -66,8 +66,10 @@
 				"/my/articlecha",
 				{id:id},
 				function (a) {
-					$("#title").append(a.title);
-					$("#content").append(a.content);
+					$("#content").empty()
+					$("#title").empty()
+					$("#title").append(a.title)
+					$("#content").append(a.content)
 				})
 	}
 </script>

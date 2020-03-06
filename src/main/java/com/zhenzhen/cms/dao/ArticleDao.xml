@@ -17,31 +17,35 @@
 		id=#{idd}
 	</select>
 	<resultMap type="Article" id="smap">
-		<id column="id" property="id" />
-		<result column="title" property="title" />
-		<result column="content" property="content" />
-		<result column="picture" property="picture" />
-		<result column="channel_id" property="channelId" />
-		<result column="category_id" property="categoryId" />
-		<result column="user_id" property="userId" />
-		<result column="hits" property="hits" />
-		<result column="hot" property="hot" />
-		<result column="status" property="status" />
-		<result column="deleted" property="deleted" />
-		<result column="created" property="created" />
-		<result column="updated" property="updated" />
-		<result column="summary" property="summary" />
-		<association property="user" select="sel" column="user_id" />
-		<!-- 映射一对一关系 文章所属栏目 -->
-		<association property="channel" select="se"
-			column="channel_Id" />
-		<association property="category" select="s"
-			column="category_Id" />
+		<id column="id" property="id"/>
+		<result column="title" property="title"/>
+		<result column="content" property="content"/>
+		<result column="picture" property="picture"/>
+		<result column="channel_id" property="channelId"/>
+		<result column="category_id" property="categoryId"/>
+		<result column="user_id" property="userId"/>
+		<result column="hits" property="hits"/>
+		<result column="hot" property="hot"/>
+		<result column="status" property="status"/>
+		<result column="deleted" property="deleted"/>
+		<result column="created" property="created"/>
+		<result column="updated" property="updated"/>
+		<result column="summary" property="summary"/>
+		<association property="user" select="sel" column="user_id"></association>
+		<association property="channel" select="se" column="channel_id"></association>
+		<association property="category" select="s" column="category_id"></association>
 	</resultMap>
 	<select id="select" resultMap="smap">
 		select * from cms_article
+		<where>
+			<if test="status !=null">
+				and status=#{status}
+			</if>
+			<if test="title!=null and title !=''">
+				and title like concat('%',#{title},'%')
+			</if>
+		</where>
 	</select>
-	<!-- 根据ID 返回user对象 -->
 	<select id="sel" resultType="User">
 		select * from cms_user where id=#{id}
 	</select>

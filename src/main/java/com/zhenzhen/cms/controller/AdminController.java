@@ -13,13 +13,14 @@ import com.github.pagehelper.PageInfo;
 import com.zhenzhen.cms.entity.Article;
 import com.zhenzhen.cms.service.ArticleService;
 @RequestMapping("admin")
-@Controller()
+@Controller
 public class AdminController {
+	
 	@Autowired
 	private ArticleService articleService;
 	
-	@RequestMapping(value = {"","/","index"})
-	public String index() {
+	@RequestMapping(value = {"","/","admin"})
+	public String admin() {
 		return "admin/index";
 	}
 	
@@ -32,4 +33,5 @@ public class AdminController {
 		m.addAttribute("info", pa);
 		return "admin/articles";
 	}
+	
 }

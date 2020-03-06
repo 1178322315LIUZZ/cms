@@ -18,8 +18,9 @@
 	<div class="container-fulid">
 		<div class="row">
 			<div class="col-md-12" style="background-color: #563D7C; height: 60px">
-				<img alt="" src="/css/img/1.jpg" style="height: 60px;width: 60px">
+				<img alt="" src="/css/img/1.jpg" style="height: 60px;width: 60px" class="rounded-circle">
 				<span style="color: white">今日头条-个人中心</span>
+				<div style="float: right;padding-top: 10px"> <a href=""><font style="color: white"> 注销</font></a></div>
 			</div>
 		</div>
 		<div class="row">

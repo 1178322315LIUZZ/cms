@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +21,20 @@
 	src="<%=request.getContextPath()%>/js/jquery.validate.js"></script>
 </head>
 <body>
+<div class="form-group form-inline " >
+
+ 文章标题：
+ <input type="text" name="title" class="form-control form-control-sm" value="${article.title }"> &nbsp;&nbsp;
+审核状态：
+ <select name="status" class="form-control form-control-sm col-sm-1">
+  <option value="0" ${article.status=="0"?"selected":"" }>待审</option>
+  <option value="1" ${article.status=="1"?"selected":"" }>已审</option>
+  <option value="-1" ${article.status=="-1"?"selected":"" }>驳回</option>
+ </div>
+ </select>
+ &nbsp;&nbsp;
+ <button type="button" onclick="query()" class="btn btn-warning btn-sm">查询</button>
+ <hr>
 	<table class="table table-bordered table-hover table-sm">
 		<tr>
 			<td>序号</td>
@@ -37,8 +52,7 @@
 				<td>${i.count }</td>
 				<td width="350px">${article.title }</td>
 				<td>${article.user.username }</td>
-				<td><%-- <fmt:formatDate value="${article.created}" pattern="yyyy-MM-dd HH:mm:ss"/> --%> 
-				${article.created }
+				<td><fmt:formatDate value="${article.created }" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<td>${article.channel.name }</td>
 				<td>${article.category.name }</td>
@@ -49,22 +63,18 @@
 				 <c:if test="${article.hot==1}">
 				   <button type="button" class="btn btn-danger btn-sm">是</button>
 				  </c:if>
-				
 				</td>
 				<td>${article.hits }</td>
 				<td><button type="button" class="btn btn-link">详情</button></td>
 			</tr>
-
-
 		</c:forEach>
-
-     
 	</table>
+	<script type="text/javascript">
+	function query(){
+		  var status=$("[name='status']").val();
+		  var title=$("[name='title']").val();
+		  $("#center").load("/admin/articles?status="+status+"&title="+title);
+	  }
+	</script>
 </body>
-<script type="text/javascript">
-		
-	function goPage(page) {
-		$("#center").load("/my/articles?page="+page)
-	}
-</script>
 </html>
