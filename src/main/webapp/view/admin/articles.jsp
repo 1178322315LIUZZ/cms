@@ -22,19 +22,20 @@
 </head>
 <body>
 <div class="form-group form-inline " >
-
- 文章标题：
+	<form>
+	文章标题：
  <input type="text" name="title" class="form-control form-control-sm" value="${article.title }"> &nbsp;&nbsp;
 审核状态：
- <select name="status" class="form-control form-control-sm col-sm-1">
+ <select name="status" class="form-control form-control-sm col-sm-2">
   <option value="0" ${article.status=="0"?"selected":"" }>待审</option>
   <option value="1" ${article.status=="1"?"selected":"" }>已审</option>
   <option value="-1" ${article.status=="-1"?"selected":"" }>驳回</option>
- </div>
  </select>
  &nbsp;&nbsp;
- <button type="button" onclick="query()" class="btn btn-warning btn-sm">查询</button>
- <hr>
+ <button type="button" onclick="query()" class="btn btn-warning btn-sm" name="cha">查询</button>
+	</form>
+ 
+</div>
 	<table class="table table-bordered table-hover table-sm">
 		<tr>
 			<td>序号</td>
@@ -58,23 +59,121 @@
 				<td>${article.category.name }</td>
 				<td>
 				  <c:if test="${article.hot==0}">
-				   <button type="button" class="btn btn-info btn-sm">否</button>
+				   <button type="button" class="btn btn-info btn-sm" onclick="upda(${article.id})">否</button>
 				  </c:if>
 				 <c:if test="${article.hot==1}">
-				   <button type="button" class="btn btn-danger btn-sm">是</button>
+				   <button type="button" class="btn btn-danger btn-sm" onclick="upd(${article.id})">是</button>
 				  </c:if>
 				</td>
 				<td>${article.hits }</td>
-				<td><button type="button" class="btn btn-link">详情</button></td>
+				<td>
+				<div>
+				<!-- Button trigger modal -->
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="cha(${article.id})">
+  					详情
+				</button>
+				</div>
+			</td>
 			</tr>
 		</c:forEach>
 	</table>
+	<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><span id="title"></span></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="content">
+        
+      </div>
+      <div class="modal-footer">
+      <span id="msg"></span>
+      <button type="button" class="btn btn-success" onclick="pass()">通过</button>
+	  <button type="button" class="btn btn-danger" onclick="pas()">驳回</button>
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+	<jsp:include page="/view/common/pages.jsp"></jsp:include>
 	<script type="text/javascript">
+	function goPage(page) {
+		var forms=$("form").serialize()
+		$("#center").load("/admin/articles?page="+page+"&article="+forms)
+	}
 	function query(){
 		  var status=$("[name='status']").val();
 		  var title=$("[name='title']").val();
 		  $("#center").load("/admin/articles?status="+status+"&title="+title);
 	  }
+	function upda(id) {
+		var page=${info.pageNum}
+		$.post(
+				"/admin/upda",
+				{id:id},
+				function (as) {
+					if(as>0){
+						$("#center").load("/admin/articles?page="+page)
+					}else{
+						alert("操作失败")
+					}
+				})
+	}
+	function upd(id) {
+		var page=${info.pageNum}
+		$.post(
+				"/admin/upd",
+				{id:id},
+				function (as) {
+					if(as>0){
+						$("#center").load("/admin/articles?page="+page)
+					}else{
+						alert("操作失败")
+					}
+				})
+	}
+	var idd
+	function cha(id) {
+		idd=id
+		$.post(
+				"/my/articlecha",
+				{id:id},
+				function (a) {
+					$("#content").empty()
+					$("#title").empty()
+					$("#msg").empty()
+					$("#title").append(a.title)
+					$("#content").append(a.content)
+				})
+	}
+	function pass(id) {
+		$.post(
+				"/admin/pass",
+				{id:idd},
+				function(as) {
+					if(as>0){
+						   $("#msg").append("操作成功！")
+					   }else{
+						   $("#msg").append("操作失败！")
+					   }
+				})
+	}
+	function pas(id) {
+		$.post(
+				"/admin/pas",
+				{id:idd},
+				function(as) {
+					if(as>0){
+						   $("#msg").append("驳回成功！")
+					   }else{
+						   $("#msg").append("操作失败！")
+					   }
+				})
+	}
 	</script>
 </body>
 </html>

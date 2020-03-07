@@ -33,6 +33,26 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleDao.select(article);
 	}
 
+	public int upda(Integer id) {
+		// TODO Auto-generated method stub
+		return articleDao.upda(id);
+	}
+
+	public int upd(Integer id) {
+		// TODO Auto-generated method stub
+		return articleDao.upd(id);
+	}
+
+	public int pass(Integer id) {
+		// TODO Auto-generated method stub
+		return articleDao.pass(id);
+	}
+
+	public int pas(Integer id) {
+		// TODO Auto-generated method stub
+		return articleDao.pas(id);
+	}
+
 	
 	
 }

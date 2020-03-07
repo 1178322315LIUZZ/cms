@@ -16,4 +16,12 @@ public interface ArticleDao {
 
 	List<Article> select(Article article);
 
+	int upda(@Param("idd")Integer id);
+
+	int upd(@Param("idd")Integer id);
+
+	int pass(@Param("idd")Integer id);
+
+	int pas(@Param("idd")Integer id);
+
 }

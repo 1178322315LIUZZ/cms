@@ -14,4 +14,12 @@ public interface ArticleService {
 
 	List<Article> select(Article article);
 
+	int upda(Integer id);
+
+	int upd(Integer id);
+
+	int pass(Integer id);
+
+	int pas(Integer id);
+
 }

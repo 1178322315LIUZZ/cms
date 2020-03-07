@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -33,5 +34,24 @@ public class AdminController {
 		m.addAttribute("info", pa);
 		return "admin/articles";
 	}
-	
+	@RequestMapping("upda")
+	@ResponseBody
+	public int upda(Integer id) {
+		return articleService.upda(id);
+	}
+	@RequestMapping("upd")
+	@ResponseBody
+	public int upd(Integer id) {
+		return articleService.upd(id);
+	}
+	@RequestMapping("pass")
+	@ResponseBody
+	public int pass(Integer id) {
+		return articleService.pass(id);
+	}
+	@RequestMapping("pas")
+	@ResponseBody
+	public int pas(Integer id) {
+		return articleService.pas(id);
+	}
 }

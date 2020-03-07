@@ -55,4 +55,35 @@
 	<select id="s" resultType="Category">
 		select * from cms_category where id=#{id}
 	</select>
+	<update id="upda">
+	update cms_article set hot=1 where id=#{idd}
+	</update>
+	<update id="upd">
+	update cms_article set hot=0 where id=#{idd}
+	</update>
+	<update id="pass">
+	update cms_article set status=1 where id=#{idd}
+	</update>
+	<update id="pas">
+	update cms_article set status=-1 where id=#{idd}
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>
