@@ -12,13 +12,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zhenzhen.cms.entity.Article;
+import com.zhenzhen.cms.entity.User;
 import com.zhenzhen.cms.service.ArticleService;
+import com.zhenzhen.cms.service.UserService;
 @RequestMapping("admin")
 @Controller
 public class AdminController {
 	
 	@Autowired
 	private ArticleService articleService;
+	@Autowired
+	private UserService userService;
 	
 	@RequestMapping(value = {"","/","admin"})
 	public String admin() {
@@ -53,5 +57,25 @@ public class AdminController {
 	@ResponseBody
 	public int pas(Integer id) {
 		return articleService.pas(id);
+	}
+	@RequestMapping("user")
+	public String users(User user, Model m,@RequestParam(defaultValue = "1")int page) {
+		PageHelper.startPage(page, 2);
+		List<User> list = userService.select1(user);
+		PageInfo<User> pa=new PageInfo<User>(list);
+		m.addAttribute("g", list);
+		m.addAttribute("info", pa);
+		m.addAttribute("us", user);
+		return "admin/user";
+	}
+	@RequestMapping("up")
+	@ResponseBody
+	public int up(Integer id) {
+		return userService.up(id);
+	}
+	@RequestMapping("u")
+	@ResponseBody
+	public int u(Integer id) {
+		return userService.u(id);
 	}
 }
