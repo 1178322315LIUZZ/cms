@@ -24,4 +24,6 @@ public interface ArticleDao {
 
 	int pas(@Param("idd")Integer id);
 
+	Article show(Article article);
+
 }

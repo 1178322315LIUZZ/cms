@@ -44,6 +44,15 @@
 			<if test="title!=null and title !=''">
 				and title like concat('%',#{title},'%')
 			</if>
+			<if test="channelId !=null">
+				and channel_id=#{channelId}
+			</if>
+			<if test="categoryId !=null">
+				and category_id=#{categoryId}
+			</if>
+			<if test="hot !=null">
+				and hot=#{hot}
+			</if>
 		</where>
 	</select>
 	<select id="sel" resultType="User">
@@ -68,7 +77,17 @@
 	update cms_article set status=-1 where id=#{idd}
 	</update>
 	
-	
+	<select id="show" resultMap="smap">
+		select * from cms_article where id=#{id}
+		<where>
+			<if test="channelId !=null">
+				and channel_id=#{channelId}
+			</if>
+			<if test="categoryId !=null">
+				and category_id=#{categoryId}
+			</if>
+		</where>
+	</select>
 	
 	
 	

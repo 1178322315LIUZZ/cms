@@ -22,4 +22,6 @@ public interface ArticleService {
 
 	int pas(Integer id);
 
+	Article show(Article article);
+
 }
