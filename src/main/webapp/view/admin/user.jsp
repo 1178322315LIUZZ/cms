@@ -89,7 +89,8 @@
 				{id:id},
 				function (as) {
 					if(as>0){
-						$("#center").load("/admin/user?page="+page)
+						var forms=$("form").serialize()
+						$("#center").load("/admin/user?page="+page+"&user="+forms)
 					}else{
 						alert("操作失败")
 					}
@@ -102,7 +103,8 @@
 				{id:id},
 				function (as) {
 					if(as>0){
-						$("#center").load("/admin/user?page="+page)
+						var forms=$("form").serialize()
+						$("#center").load("/admin/user?page="+page+"&user="+forms)
 					}else{
 						alert("操作失败")
 					}
