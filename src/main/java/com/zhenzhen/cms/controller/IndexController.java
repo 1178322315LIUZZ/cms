@@ -1,5 +1,6 @@
 package com.zhenzhen.cms.controller;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,28 +25,24 @@ public class IndexController {
 	private ArticleService art;
 	@RequestMapping(value = {"","/","index"})
 	public String index(Model model,Article article,@RequestParam(defaultValue = "1")int page) {	
-		model.addAttribute("article", article);
-		//查询左侧栏目
-		List<Channel> channels=channelService.selects();
-		model.addAttribute("channels", channels);
+		List<Channel> selects = channelService.selects();
 		if(article.getChannelId()!=null) {
-			List<Category> categorys = channelService.sele(article.getChannelId());
-			model.addAttribute("categorys", categorys);			
+			List<Category> sele = channelService.sele(article.getChannelId());
+			model.addAttribute("categorys", sele);
 		}
 		PageHelper.startPage(page, 2);
 		List<Article> select = art.select(article);
-		PageInfo<Article> p=new PageInfo<Article>(select);
+		PageInfo<Article> pa=new PageInfo<Article>(select);
 		model.addAttribute("g", select);
-		model.addAttribute("info", p);
+		model.addAttribute("channels", selects);
+		model.addAttribute("info", pa);
 		return "index/index";
 	}
+	
 	@RequestMapping("show")
 	public String show(Article article,Model m) {
-		Article list=art.show(article);
-		m.addAttribute("g", list);
+		Article show = art.show(article);
+		m.addAttribute("g", show);
 		return "index/show";
 	}
-	
-	
-	
 }
