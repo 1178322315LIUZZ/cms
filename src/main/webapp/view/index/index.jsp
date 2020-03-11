@@ -21,14 +21,17 @@
 	src="<%=request.getContextPath()%>/js/jquery.validate.js"></script>
 </head>
 <body>
-	<div class="container-fulid">
+	<div class="container-fluid">
 		<!-- head -->
 		<div class="row">
 			<div class="col-md-12"
 				style="background-color: #222222; height: 34px">
 				<font color="white" size="2px" style="margin-left: 10px">下载APP</font>
+				<div style="float: right">
+					<button type="button" class="btn btn-link" onclick="reg()" data-toggle="modal" style="background-color: #222222; height: 34px"
+						data-target="#exampleModal">注册</button>
+				</div>
 			</div>
-
 		</div>
 
 		<div class="row">
@@ -69,41 +72,21 @@
 					<div id="carouselExampleCaptions" class="carousel slide"
 						data-ride="carousel" style="margin-top: 5px">
 						<ol class="carousel-indicators">
-							<li data-target="#carouselExampleCaptions" data-slide-to="0"
-								class="active"></li>
-							<li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-							<li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-							<li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
+							<c:forEach items="${li }" var="li" varStatus="i">
+								<li data-target="#carouselExampleCaptions"
+									data-slide-to="${i.index }" class="active"></li>
+							</c:forEach>
 						</ol>
 						<div class="carousel-inner">
-							<div class="carousel-item active">
-								<img src="/view/common/jd1.png" class="d-block w-100" alt=""
-									style="width: 175px; height: 400px">
-								<div class="carousel-caption d-none d-md-block">
-									<h5>京东1</h5>
+							<c:forEach items="${li }" var="li" varStatus="i">
+								<div class="carousel-item ${i.index==0?"active":"" }">
+									<img src="/pic/${li.url }" class="d-block w-100" alt=""
+										style="width: 175px; height: 400px">
+									<div class="carousel-caption d-none d-md-block">
+										<h5>${li.title }</h5>
+									</div>
 								</div>
-							</div>
-							<div class="carousel-item">
-								<img src="/view/common/jd2.png" class="d-block w-100" alt=""
-									style="width: 175px; height: 400px">
-								<div class="carousel-caption d-none d-md-block">
-									<h5>京东2</h5>
-								</div>
-							</div>
-							<div class="carousel-item">
-								<img src="/view/common/jd3.png" class="d-block w-100" alt=""
-									style="width: 175px; height: 400px">
-								<div class="carousel-caption d-none d-md-block">
-									<h5>京东3</h5>
-								</div>
-							</div>
-							<div class="carousel-item">
-								<img src="/view/common/jd4.png" class="d-block w-100" alt=""
-									style="width: 175px; height: 400px">
-								<div class="carousel-caption d-none d-md-block">
-									<h5>京东4</h5>
-								</div>
-							</div>
+							</c:forEach>
 						</div>
 						<a class="carousel-control-prev" href="#carouselExampleCaptions"
 							role="button" data-slide="prev"> <span
@@ -122,9 +105,10 @@
 							<img src="/pic/${c.picture }" class="mr-3" alt="..."
 								width="100px" height="100px">
 							<div class="media-body">
-								<h5 class="mt-0"><a href="/show?id=${c.id }">${c.title }</a></h5>
-								作者:${c.user.username }&nbsp;&nbsp;
-								浏览量:${c.hits }
+								<h5 class="mt-0">
+									<a href="/show?id=${c.id }">${c.title }</a>
+								</h5>
+								作者:${c.user.username }&nbsp;&nbsp; 浏览量:${c.hits }
 							</div>
 						</div>
 						<hr>
@@ -132,8 +116,35 @@
 					<jsp:include page="/view/common/pages.jsp"></jsp:include>
 				</div>
 			</div>
-			<div class="col-md-3">右侧</div>
-
+			<div class="col-md-3">
+				<div class="card-header">最新文章</div>
+				<div class="card" style="width: 18rem;">
+					<c:forEach items="${ss }" var="ss">
+						<img src="/pic/${ss.picture }" class="card-img-top" alt="..." style="width: 60px;height: 60px">
+					<div class="card-body">
+						<p class="card-text">${ss.title }</p>
+					</div>
+					</c:forEach>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">用户注册</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body" id="reg">
+					
+					</div>
+				
+				</div>
+			</div>
 		</div>
 	</div>
 	<script type="text/javascript">
@@ -144,6 +155,10 @@
 			location = "/?page=" + page + "&channelId=" + channelId
 					+ "&categoryId=" + categoryId + "&hot=" + hot
 		}
+		function reg() {
+			$("#reg").load("/passport/reg")
+		}
+		
 	</script>
 </body>
 </html>

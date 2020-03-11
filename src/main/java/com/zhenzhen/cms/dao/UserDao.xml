@@ -20,4 +20,7 @@
 	<update id="u">
 	update cms_user set locked=1 where id=#{idd}
 	</update>
+	<insert id="login">
+		insert into cms_user (username,password,gender) values(#{username},#{password},#{gender})
+	</insert>
  </mapper>

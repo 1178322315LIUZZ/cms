@@ -15,7 +15,7 @@
 <script type="text/javascript"src="<%=request.getContextPath()%>/js/jquery.validate.js"></script>
 </head>
 <body>
-	<div class="container-fulid">
+	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12" style="background-color: #563D7C; height: 60px">
 				<img alt="" src="/css/img/1.jpg" style="height: 60px;width: 60px" class="rounded-circle">

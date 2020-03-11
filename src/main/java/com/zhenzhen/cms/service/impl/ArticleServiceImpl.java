@@ -58,6 +58,11 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleDao.show(article);
 	}
 
+	public List<Article> selectt(Article article) {
+		// TODO Auto-generated method stub
+		return articleDao.selectt(article);
+	}
+
 	
 	
 }

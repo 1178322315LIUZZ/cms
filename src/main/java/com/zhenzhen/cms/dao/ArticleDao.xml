@@ -89,8 +89,9 @@
 		</where>
 	</select>
 	
-	
-	
+	<select id="selectt" resultMap="smap">
+		select * from cms_article
+	</select>
 	
 	
 	

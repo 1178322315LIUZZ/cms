@@ -26,4 +26,6 @@ public interface ArticleDao {
 
 	Article show(Article article);
 
+	List<Article> selectt(Article article);
+
 }

@@ -14,4 +14,6 @@ public interface UserDao {
 
 	int u(@Param("idd")Integer id);
 
+	int login(User user);
+
 }

@@ -101,5 +101,9 @@ public class User implements Serializable{
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", nickname=" + nickname
 				+ ", birthday=" + birthday + ", gender=" + gender + ", locked=" + locked + ", created=" + created
 				+ ", updated=" + updated + "]";
+	}
+	public int login(User user) {
+		// TODO Auto-generated method stub
+		return 0;
 	}   
 }

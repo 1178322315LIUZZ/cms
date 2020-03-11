@@ -24,4 +24,6 @@ public interface ArticleService {
 
 	Article show(Article article);
 
+	List<Article> selectt(Article article);
+
 }

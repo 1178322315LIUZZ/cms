@@ -27,4 +27,9 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return userDao.u(id);
 	}
+
+	public int login(User user) {
+		// TODO Auto-generated method stub
+		return userDao.login(user);
+	}
 }

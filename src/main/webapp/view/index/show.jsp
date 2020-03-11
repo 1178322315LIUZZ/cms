@@ -16,7 +16,7 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.validate.js"></script>
 </head>
 <body>
-	<div class="container-fulid">
+	<div class="container-fluid">
 		<!-- head -->
 		<div class="row">
 			<div class="col-md-12"

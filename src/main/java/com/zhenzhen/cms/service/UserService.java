@@ -12,4 +12,6 @@ public interface UserService {
 
 	int u(Integer id);
 
+	int login(User user);
+
 }

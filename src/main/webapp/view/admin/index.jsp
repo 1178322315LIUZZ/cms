@@ -15,7 +15,7 @@
 <script type="text/javascript"src="<%=request.getContextPath()%>/js/jquery.validate.js"></script>
 </head>
 <body>
-	<div class="container-fulid">
+	<div class="container-fluid">
 		<div class="row" style="background-color: #009FD9">
 			<div class="col-md-12"><img alt="" src="/css/img/2.jpg"
 				style="width: 55px; height: 55px" class="rounded-circle"><font color="white" style="margin-left: 5px">管理员后台系统</font>
