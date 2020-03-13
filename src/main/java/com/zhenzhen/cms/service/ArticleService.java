@@ -10,7 +10,7 @@ public interface ArticleService {
 	
 	int insert(Article article);
 
-	Article cha(Integer id);
+	Article cha(Integer idd);
 
 	List<Article> select(Article article);
 

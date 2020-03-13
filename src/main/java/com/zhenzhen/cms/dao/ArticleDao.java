@@ -12,7 +12,7 @@ public interface ArticleDao {
 
 	int insert(Article article);
 
-	Article cha(@Param("idd")Integer id);
+	Article cha(@Param("idd")Integer idd);
 
 	List<Article> select(Article article);
 

@@ -77,4 +77,29 @@ public class PassportController {
 		session.invalidate();
 		return "redirect:/";
 	}
+	@PostMapping("admindenglu")
+	@ResponseBody
+	public Result<User> adminlogin(User user,Model model,HttpSession session) {
+		Result<User> result=  new Result<User>();
+		try {
+			//去登录，如果成功则返回用户的基本信息 
+			user.setRole(1);
+			User us = userService.admindenglu(user);
+			if(null != user) {
+				result.setCode(200);
+				result.setMsg("登录成功");
+				session.setAttribute("admin", us);//登录成功，把用户信息存入session
+			}
+		} catch (CMSException e) {//如果是自定义异常
+			 e.printStackTrace();
+			 result.setCode(300);//登录失败
+			 result.setMsg("登录失败:"+e.getMessage());
+			
+		}catch (Exception e) {//其他异常
+			e.printStackTrace();//把异常消息在控制台打印，以便程序员找BUG
+			 result.setCode(500);//登录失败,不可预知的异常
+			 result.setMsg("登录失败，系统出现不可预知异常，请联系管理员");//给用户看的
+		}
+		return result;
+	}
 }

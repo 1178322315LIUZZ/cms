@@ -20,6 +20,7 @@
 </head>
 <body>
 	<div class="container">
+	<h1>${err }</h1>
 		<form id="form1">
 
 			<div class="form-group">

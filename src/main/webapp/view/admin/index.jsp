@@ -19,7 +19,7 @@
 		<div class="row" style="background-color: #009FD9">
 			<div class="col-md-12"><img alt="" src="/css/img/2.jpg"
 				style="width: 55px; height: 55px" class="rounded-circle"><font color="white" style="margin-left: 5px">管理员后台系统</font>
-				<div style="float: right;padding-top: 10px"> <a href=""><font style="color: white"> 注销</font></a></div>
+				<div style="float: right;padding-top: 10px"> <a href="/passport/logout"><font style="color: white"> 注销</font></a></div>
 			</div>
 		</div>
 		<div class="row">

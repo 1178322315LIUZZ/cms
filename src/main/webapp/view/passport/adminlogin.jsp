@@ -67,21 +67,16 @@
 					 }, 
 				 },submitHandler:function(flag){
 					 //如果校验通过。则执行注册
-					 $.post("/passport/denglu",$("#form1").serialize(),function(result){
+					 $.post("/passport/admindenglu",$("#form1").serialize(),function(result){
 						 if(result.code==200){
 								// $("#msg").html("<font color='red'>恭喜登录成功</font")
-								 location.href="/";//刷新回到首页
+								 location.href="/admin";//刷新回到首页
 							 }else{
-								 $("#msg").html("<font color='red'>"+result.msg+"</font")
+								  $("#msg").html("<font color='red'>"+result.msg+"</font") 
 						 }
 					 })
 				 }  
-			  
-			  
 		  })
-		  
-		  
-		  
 	  })
 
 	

@@ -29,15 +29,22 @@
       </bean>
       
       
-      <!-- 拦截器 -->
-<!--       <mvc:interceptors>
+      <!--用户 拦截器 -->
+      <mvc:interceptors>
          <mvc:interceptor>
-           <mvc:mapping path="/**"/>
-           <mvc:exclude-mapping path="/login.do"/>
+           <mvc:mapping path="/my/**"/>
+           <!-- <mvc:exclude-mapping path="/login"/> -->
            <bean class="com.zhenzhen.cms.util.MyInterceptor"></bean>
          </mvc:interceptor>
-      </mvc:interceptors> -->
-      
+      </mvc:interceptors> 
+        <!--管理员拦截器 -->
+       <mvc:interceptors>
+         <mvc:interceptor>
+           <mvc:mapping path="/admin/**"/>
+           <!-- <mvc:exclude-mapping path="/login"/> -->
+           <bean class="com.zhenzhen.cms.util.AdminInterceptor"></bean>
+         </mvc:interceptor>
+      </mvc:interceptors> 
         
     
    

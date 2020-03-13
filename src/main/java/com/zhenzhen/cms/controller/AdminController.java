@@ -78,4 +78,9 @@ public class AdminController {
 	public int u(Integer id) {
 		return userService.u(id);
 	}
+	@RequestMapping("articlecha")
+	@ResponseBody
+	public Article cha(Integer idd) {
+		return articleService.cha(idd);
+	}
 }

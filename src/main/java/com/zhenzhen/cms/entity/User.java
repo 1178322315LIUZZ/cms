@@ -26,6 +26,14 @@ public class User implements Serializable{
     private Integer locked;//1:禁用 .0:正常.默认 0
     private Date created;//注册时间
     private Date updated;//修改时间
+    private Integer role;
+    
+	public Integer getRole() {
+		return role;
+	}
+	public void setRole(Integer role) {
+		this.role = role;
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -80,30 +88,11 @@ public class User implements Serializable{
 	public void setUpdated(Date updated) {
 		this.updated = updated;
 	}
-	public User(Integer id, String username, String password, String nickname, Date birthday, Integer gender,
-			Integer locked, Date created, Date updated) {
-		super();
-		this.id = id;
-		this.username = username;
-		this.password = password;
-		this.nickname = nickname;
-		this.birthday = birthday;
-		this.gender = gender;
-		this.locked = locked;
-		this.created = created;
-		this.updated = updated;
-	}
-	public User() {
-		super();
-	}
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", nickname=" + nickname
 				+ ", birthday=" + birthday + ", gender=" + gender + ", locked=" + locked + ", created=" + created
-				+ ", updated=" + updated + "]";
+				+ ", updated=" + updated + ", role=" + role + "]";
 	}
-	public int login(User user) {
-		// TODO Auto-generated method stub
-		return 0;
-	}   
+	
 }

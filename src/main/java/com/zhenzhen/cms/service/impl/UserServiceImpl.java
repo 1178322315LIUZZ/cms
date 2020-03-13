@@ -66,6 +66,8 @@ public class UserServiceImpl implements UserService {
 		User u = this.yan(user.getUsername());
 		if (null == u) {
 			throw new CMSException("该用户名不存在");
+		}if(u.getLocked()==1) {
+			throw new CMSException("该用户已禁用");
 		}
 		// 3 比较密码是否一致 //数据库存储的是 加密后的密码
 		// 对登录的密码再进行加密 再和数据库的密码进行比较
@@ -73,5 +75,21 @@ public class UserServiceImpl implements UserService {
 			throw new CMSException("密码不正确，请重新录入");
 		return u;
 	}
-
+	public User admindenglu(User user) {
+		if (!StringUtil.hasText(user.getUsername()))
+			throw new CMSException("用户名不能为空");
+		// 2 检查用户名是否存在
+		User u = this.yan(user.getUsername());
+		if (null == u) {
+			throw new CMSException("该用户名不存在");
+		}
+		if(u.getRole()!=1) {
+			throw new CMSException("该用户不是管理员");
+		}
+		// 3 比较密码是否一致 //数据库存储的是 加密后的密码
+		// 对登录的密码再进行加密 再和数据库的密码进行比较
+		if (!Md5Util.encode(user.getPassword()).equals(u.getPassword()))
+			throw new CMSException("密码不正确，请重新录入");
+		return u;
+	}
 }

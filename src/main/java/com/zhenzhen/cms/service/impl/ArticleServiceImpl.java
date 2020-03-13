@@ -23,9 +23,9 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleDao.insert(article);
 	}
 
-	public Article cha(Integer id) {
+	public Article cha(Integer idd) {
 		// TODO Auto-generated method stub
-		return articleDao.cha(id);
+		return articleDao.cha(idd);
 	}
 
 	public List<Article> select(Article article) {

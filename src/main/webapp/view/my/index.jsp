@@ -18,9 +18,10 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12" style="background-color: #563D7C; height: 60px">
-				<img alt="" src="/css/img/1.jpg" style="height: 60px;width: 60px" class="rounded-circle">
+				<a href="javascript:first()"><img alt="" src="/css/img/1.jpg" style="height: 60px;width: 60px" class="rounded-circle"></a>
 				<span style="color: white">今日头条-个人中心</span>
-				<div style="float: right;padding-top: 10px"> <a href=""><font style="color: white"> 注销</font></a></div>
+				<div style="float: right;padding-top: 10px"> <a
+									class="dropdown-item" href="/passport/logout">注销</a></div>
 			</div>
 		</div>
 		<div class="row">
@@ -47,5 +48,8 @@
 		var url=$(this).children().attr("data")
 		 $("#center").load(url) 
 	})
+	function first() {
+		location="/"
+	}
  </script>
 </html>

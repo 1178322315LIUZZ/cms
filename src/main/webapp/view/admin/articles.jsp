@@ -140,15 +140,15 @@
 	function cha(id) {
 		idd=id
 		$.post(
-				"/my/articlecha",
-				{id:id},
+				"/admin/articlecha",
+				{idd:idd},
 				function (a) {
 					$("#content").empty()
 					$("#title").empty()
 					$("#msg").empty()
 					$("#title").append(a.title)
 					$("#content").append(a.content)
-				})
+				},"json")
 	}
 	function pass(id) {
 		$.post(

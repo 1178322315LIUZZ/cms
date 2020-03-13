@@ -22,6 +22,7 @@ import com.github.pagehelper.PageInfo;
 import com.zhenzhen.cms.entity.Article;
 import com.zhenzhen.cms.entity.Category;
 import com.zhenzhen.cms.entity.Channel;
+import com.zhenzhen.cms.entity.User;
 import com.zhenzhen.cms.service.ArticleService;
 import com.zhenzhen.cms.service.ChannelService;
 
@@ -40,7 +41,9 @@ public class MyController {
 	}
 	
 	@RequestMapping("articles")
-	public String articles(Article article,Model m,@RequestParam(defaultValue = "1")int page) {
+	public String articles(Article article,Model m,@RequestParam(defaultValue = "1")int page,HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		article.setUserId(user.getId());
 		PageHelper.startPage(page, 2);
 		List<Article> list = articleService.selects(article);
 		PageInfo<Article> pa=new PageInfo<Article>(list);
@@ -90,13 +93,8 @@ public class MyController {
 		
 		
 		//封装文件的基本属性
-//		User user = (User) session.getAttribute("user");
-//	    //从session获取当前登录的人信息
-//		if(null==user) {
-//			return false;//如果session过期则回到首页重新登录
-//		}
-//		article.setUserId(user.getId());//
-		
+		User user = (User) session.getAttribute("user");
+		article.setUserId(user.getId());	
 		article.setStatus(0);//默认待审核
 		article.setHits(0);;//默认点击量为 0
 		article.setDeleted(0);//默认未删除
@@ -109,8 +107,9 @@ public class MyController {
 	}
 	@RequestMapping("articlecha")
 	@ResponseBody
-	public Article cha(Integer id) {
-		return articleService.cha(id);
+	public Article cha(Integer idd) {
+		System.out.println(idd);
+		return articleService.cha(idd);
 	}
 	
 }

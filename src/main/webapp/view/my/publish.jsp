@@ -41,7 +41,7 @@ String htmlData = request.getParameter("content1") != null ? request.getParamete
 		 for(var i in channels){
 			 $("#channel").append("<option value='"+channels[i].id+"'>"+channels[i].name+"</option>")  
 		 }
-	 })
+	 },"json")
 	//为栏目绑定改变事件
 	$("#channel").change(function(){
 		 var channelId = $(this).val();//获取当前改变的栏目ID
@@ -50,7 +50,7 @@ String htmlData = request.getParameter("content1") != null ? request.getParamete
 			 for(var i in categorys){
 				 $("#category").append("<option value='"+categorys[i].id+"'>"+categorys[i].name+"</option>")  
 			 }
-		 })	
+		 },"json")	
 		
 	}) 
  })

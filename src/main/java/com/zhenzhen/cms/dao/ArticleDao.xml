@@ -4,7 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhenzhen.cms.dao.ArticleDao">
 	<select id="selects" resultType="Article">
-		select * from cms_article
+		select * from cms_article where user_id=#{userId}
+		order by created desc
 	</select>
 	<insert id="insert">
 		insert into
@@ -54,6 +55,7 @@
 				and hot=#{hot}
 			</if>
 		</where>
+		order by created desc
 	</select>
 	<select id="sel" resultType="User">
 		select * from cms_user where id=#{id}
@@ -90,7 +92,8 @@
 	</select>
 	
 	<select id="selectt" resultMap="smap">
-		select * from cms_article
+		select * from cms_article where status=#{status}
+		order by created desc
 	</select>
 	
 	

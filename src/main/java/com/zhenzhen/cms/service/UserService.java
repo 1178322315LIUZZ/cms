@@ -16,4 +16,6 @@ public interface UserService {
 	User yan(String user);
 
 	User denglu(User user);
+
+	User admindenglu(User user);
 }

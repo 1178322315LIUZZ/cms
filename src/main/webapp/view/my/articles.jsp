@@ -70,7 +70,7 @@
 					$("#title").empty()
 					$("#title").append(a.title)
 					$("#content").append(a.content)
-				})
+				},"json")
 	}
 </script>
 </html>
