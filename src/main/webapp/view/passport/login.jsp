@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <!--??  -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>注册</title>
+<title>登录</title>
 <%-- <link href="<%=request.getContextPath()%>/css/index3.css" rel="stylesheet">  --%>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-3.2.1.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.validate.js"></script>
@@ -31,22 +31,14 @@
 					type="password" class="form-control" name="password">
 			</div>
 			<div class="form-group">
-				<label for="repassword">确认密码</label> <input id="repassword"
-					type="password" class="form-control" name="repassword">
-			</div>
-			<div class="form-group form-inline">
-				<label for="gender">性别</label> <input id="gender" type="radio"
-					class="form-check-input" name="gender" value="1" checked>男 <input
-					id="gender" type="radio" class="form-check-input" name="gender"
-					value="0">女
-			</div>
-
-			<div class="form-group">
-				<button type="submit" class="btn btn-info">注册</button>
+				<button type="submit" class="btn btn-info">登录</button>
 				<button type="reset" class="btn btn-warning">重置</button>
 			</div>
+
 		</form>
-	</div>	
+
+	</div>
+	
 	<script type="text/javascript">
 	  $(function(){
 		  
@@ -61,10 +53,7 @@
 				 password:{
 					 required:true,//密码不能为空
 					 rangelength:[6,10],//密码长度在6-10之间
-				 }, 
-				 repassword:{//确认密码和密码一致
-					 equalTo:"#password"
-				 }, 
+				 },
 			  },
 			  //2.定义消息提示
 				 messages:{
@@ -76,23 +65,26 @@
 						 required:"密码不能为空",
 						 rangelength:"密码长度在6-10之间"
 					 }, 
-					 repassword:{
-						 equalTo:"两次密码不一致",
-					 }, 
 				 },submitHandler:function(flag){
 					 //如果校验通过。则执行注册
-					 $.post("/passport/login",$("#form1").serialize(),function(result){
-						 if(result.code==200){//注册成功。跳转到登录页面
-							 $("#title").html("<font color='red'>恭喜,注册成功,请登录</font>")
-							 $("#passport").load("/passport/deng")
-							 
-						 }else{
-							 alert(result.msg);
+					 $.post("/passport/denglu",$("#form1").serialize(),function(result){
+						 if(result.code==200){
+								// $("#msg").html("<font color='red'>恭喜登录成功</font")
+								 location.href="/";//刷新回到首页
+							 }else{
+								 $("#msg").html("<font color='red'>"+result.msg+"</font")
 						 }
 					 })
 				 }  
-		  }) 
+			  
+			  
+		  })
+		  
+		  
+		  
 	  })
+
+	
 	</script>
 </body>
 </html>

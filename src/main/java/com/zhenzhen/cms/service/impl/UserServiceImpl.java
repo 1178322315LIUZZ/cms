@@ -1,5 +1,6 @@
 package com.zhenzhen.cms.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,9 @@ import org.springframework.stereotype.Service;
 import com.zhenzhen.cms.dao.UserDao;
 import com.zhenzhen.cms.entity.User;
 import com.zhenzhen.cms.service.UserService;
+import com.zhenzhen.cms.util.CMSException;
+import com.zhenzhen.cms.util.Md5Util;
+import com.zhenzhen.common.utils.StringUtil;
 @Service
 public class UserServiceImpl implements UserService {
 	@Autowired
@@ -29,7 +33,45 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public int login(User user) {
-		// TODO Auto-generated method stub
+		if(!StringUtil.hasText(user.getUsername())) {
+			throw new CMSException("用户名不能为空");
+		}
+		if (!(user.getUsername().length() >= 2 && user.getUsername().length() <= 10))
+			throw new CMSException("用户名的长度在2-10之间");
+		User yan = this.yan(user.getUsername());
+		if(yan!=null) {
+			throw new CMSException("用户名已存在");
+		}
+		if(!StringUtil.hasText(user.getPassword())) {
+			throw new CMSException("密码不能为空");
+		}
+		if (!(user.getPassword().length() >= 6 && user.getPassword().length() <= 10))
+			throw new CMSException("密码的长度在6-10之间");
+		user.setPassword(Md5Util.encode(user.getPassword()));
+		user.setCreated(new Date());
+		user.setNickname(user.getUsername());
+		user.setLocked(0);
 		return userDao.login(user);
 	}
+
+	public User yan(String user) {
+		// TODO Auto-generated method stub
+		return userDao.yan(user);
+	}
+
+	public User denglu(User user) {
+		if (!StringUtil.hasText(user.getUsername()))
+			throw new CMSException("用户名不能为空");
+		// 2 检查用户名是否存在
+		User u = this.yan(user.getUsername());
+		if (null == u) {
+			throw new CMSException("该用户名不存在");
+		}
+		// 3 比较密码是否一致 //数据库存储的是 加密后的密码
+		// 对登录的密码再进行加密 再和数据库的密码进行比较
+		if (!Md5Util.encode(user.getPassword()).equals(u.getPassword()))
+			throw new CMSException("密码不正确，请重新录入");
+		return u;
+	}
+
 }

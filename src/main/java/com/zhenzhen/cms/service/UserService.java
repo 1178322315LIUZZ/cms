@@ -13,5 +13,7 @@ public interface UserService {
 	int u(Integer id);
 
 	int login(User user);
+	User yan(String user);
 
+	User denglu(User user);
 }

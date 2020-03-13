@@ -3,6 +3,7 @@ package com.zhenzhen.cms.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import com.zhenzhen.cms.entity.User;
 
@@ -15,5 +16,8 @@ public interface UserDao {
 	int u(@Param("idd")Integer id);
 
 	int login(User user);
+
+	User yan(@Param("user")String user);
+	
 
 }

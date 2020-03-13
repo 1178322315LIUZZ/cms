@@ -23,4 +23,7 @@
 	<insert id="login">
 		insert into cms_user (username,password,gender) values(#{username},#{password},#{gender})
 	</insert>
+	<select id="yan" resultType="User">
+		select * from cms_user where username=#{user}
+	</select>
  </mapper>

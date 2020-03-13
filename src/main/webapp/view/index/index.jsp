@@ -15,6 +15,7 @@
 	src="<%=request.getContextPath()%>/js/jquery-3.2.1.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="/bootstrap-4.4.1-dist/css/bootstrap.min.css" />
+<script type="text/javascript" src="/js/popper.min.js"></script>
 <script type="text/javascript"
 	src="/bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
 <script type="text/javascript"
@@ -27,9 +28,25 @@
 			<div class="col-md-12"
 				style="background-color: #222222; height: 34px">
 				<font color="white" size="2px" style="margin-left: 10px">下载APP</font>
-				<div style="float: right">
-					<button type="button" class="btn btn-link" onclick="reg()" data-toggle="modal" style="background-color: #222222; height: 34px"
-						data-target="#exampleModal">注册</button>
+				<div style="float: right;">
+				<c:if test="${null==sessionScope.user}">
+						<button type="button" class="btn btn-link" onclick="reg()"
+							data-toggle="modal" data-target="#exampleModal"><font color="white" size="2px">注册</font></button>
+						<button type="button" class="btn btn-link" onclick="login()"
+							data-toggle="modal" data-target="#exampleModal"><font color="white" size="2px">登录</font></button>
+				</c:if>
+				<c:if test="${null !=sessionScope.user}">
+						<div class="btn-group dropleft">
+							<button type="button" class="btn btn-link dropdown-toggle"
+								data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false">	<font color="white" size="2px">登录信息</font></button>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#">${sessionScope.user.username }</a> <a
+									class="dropdown-item" href="/my">个人中心</a> <a
+									class="dropdown-item" href="/passport/logout">注销</a>
+							</div>
+						</div>
+					</c:if>
 				</div>
 			</div>
 		</div>
@@ -133,13 +150,13 @@
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">用户注册</h5>
+						<h5 class="modal-title" id="exampleModalLabel"><span id="title">用户注册</span></h5>
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<div class="modal-body" id="reg">
+					<div class="modal-body" id="passport">
 					
 					</div>
 				
@@ -155,10 +172,18 @@
 			location = "/?page=" + page + "&channelId=" + channelId
 					+ "&categoryId=" + categoryId + "&hot=" + hot
 		}
+		//注册
 		function reg() {
-			$("#reg").load("/passport/reg")
+			$("#title").empty()
+			$("#title").append("用户注册");
+			$("#passport").load("/passport/reg");
 		}
-		
+		//登录
+		function login() {
+			$("#title").empty()
+			$("#title").append("用户登录");
+			$("#passport").load("/passport/deng");
+		}
 	</script>
 </body>
 </html>
