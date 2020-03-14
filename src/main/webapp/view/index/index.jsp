@@ -54,10 +54,9 @@
 		<div class="row">
 			<div class="col-md-2" style="padding-top: 10px">
 				<ul>
-					<li><a class="channel"> <img alt=""
+					<li><a class="channel" onclick="shua()"><img alt=""
 							src="/view/common/logo-index.png"
 							style="width: 108px; height: 27px; margin-bottom: 5px">
-
 					</a></li>
 					<li><a href="/?hot=1 "
 						class="channel-item ${article.channelId==channel.id?'active':'' }">热点</a></li>
@@ -183,6 +182,9 @@
 			$("#title").empty()
 			$("#title").append("用户登录");
 			$("#passport").load("/passport/deng");
+		}
+		function shua() {
+			location.replace("/?hot=1")
 		}
 	</script>
 </body>
