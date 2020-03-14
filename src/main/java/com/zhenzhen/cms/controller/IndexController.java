@@ -40,6 +40,7 @@ public class IndexController {
 			model.addAttribute("categorys", sele);
 		}
 		List<Slide> li=slide.select();
+		article.setStatus(1);
 		PageHelper.startPage(page, 2);
 		List<Article> select = art.select(article);
 		PageInfo<Article> pa=new PageInfo<Article>(select);
