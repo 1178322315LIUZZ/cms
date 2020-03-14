@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	</settings>
 <!-- 别名配置 -->
  <typeAliases>
-   <package name="com.zhenzhen.cms.entity"/>   
+   <package name="com.liuzhenzhen.cms.entity"/>   
  </typeAliases>
  
  

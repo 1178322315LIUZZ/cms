@@ -72,7 +72,7 @@
 								// $("#msg").html("<font color='red'>恭喜登录成功</font")
 								 location.href="/admin";//刷新回到首页
 							 }else{
-								  $("#msg").html("<font color='red'>"+result.msg+"</font") 
+								  $("#msg").html(result.msg) 
 						 }
 					 })
 				 }  

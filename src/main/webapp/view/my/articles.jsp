@@ -64,7 +64,7 @@
 	function cha(id) {
 		$.post(
 				"/my/articlecha",
-				{id:id},
+				{idd:id},
 				function (a) {
 					$("#content").empty()
 					$("#title").empty()
