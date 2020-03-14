@@ -63,6 +63,15 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleDao.selectt(article);
 	}
 
+	public void commentCount(Integer articleId) {
+		articleDao.commentCount(articleId);
+	}
+
+	public List<Article> coCount() {
+		// TODO Auto-generated method stub
+		return articleDao.coCount();
+	}
+
 	
 	
 }

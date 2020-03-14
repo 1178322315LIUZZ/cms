@@ -26,4 +26,8 @@ public interface ArticleService {
 
 	List<Article> selectt(Article article);
 
+	void commentCount(Integer articleId);
+
+	List<Article> coCount();
+
 }

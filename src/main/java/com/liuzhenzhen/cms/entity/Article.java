@@ -28,6 +28,7 @@ public class Article implements Serializable{
 	private Integer hot;//是否热门文章 1：热门 0 ：一般文章
 	private Integer status;//文章审核状态     0：待审        1：审核通过     -1: 审核未通过
 	private Integer deleted;// 删除状态 0:正常，1：逻辑删除
+	private Integer cocount;
 	private Date created;// 文章发布时间
 	private  Date  updated;// 文章修改时间
 	private Channel channel;
@@ -39,6 +40,12 @@ public class Article implements Serializable{
 
 	private String original;
 	
+	public Integer getCocount() {
+		return cocount;
+	}
+	public void setCocount(Integer cocount) {
+		this.cocount = cocount;
+	}
 	public User getUser() {
 		return user;
 	}

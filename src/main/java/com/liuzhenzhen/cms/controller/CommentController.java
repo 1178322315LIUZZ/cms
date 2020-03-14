@@ -11,12 +11,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.liuzhenzhen.cms.entity.Comment;
 import com.liuzhenzhen.cms.entity.User;
+import com.liuzhenzhen.cms.service.ArticleService;
 import com.liuzhenzhen.cms.service.CommentService;
 @RequestMapping("comment")
 @Controller
 public class CommentController {
 	@Autowired
 	private CommentService commentService;
+	@Autowired
+	private ArticleService art;
 	@RequestMapping("insert")
 	@ResponseBody
 	public int insert(Comment comment,Integer articleId,HttpSession session) {
@@ -27,6 +30,7 @@ public class CommentController {
 			comment.setUserId(user.getId());
 			comment.setArticleId(articleId);
 			comment.setCreated(new Date());
+			art.commentCount(articleId);
 			return commentService.insert(comment);
 		}
 	}

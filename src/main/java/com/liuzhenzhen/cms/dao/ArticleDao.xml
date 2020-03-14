@@ -96,7 +96,10 @@
 		order by created desc
 	</select>
 	
-	
+	<select id="coCount" resultMap="smap">
+		select * from cms_article 
+		order by cocount desc
+	</select>
 	
 	
 	

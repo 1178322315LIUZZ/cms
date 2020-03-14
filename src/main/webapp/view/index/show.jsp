@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,28 +28,41 @@
 				style="background-color: #222222; height: 34px">
 				<font color="white" size="2px" style="margin-left: 10px">下载APP</font>
 			</div>
-
-		</div>
-		<div>
+			<div class="col-md-9">
+			<div>
 			<h1>标题:${g.title }</h1>
 			<h6>作者:${g.user.username }</h6>
 			${g.content }
 			<hr>
-			<!-- 文章评论 -->
+			<c:if test="${sessionScope.user!=null }">
+				<!-- 文章评论 -->
 			<div>
 				<h5>文章评论：</h5>
 				<textarea rows="8" cols="20" style="width: 753px" name="content"></textarea>
 				<br>
 				<button type="button" onclick="addComment()" class="btn btn-info">提交评论</button>
 			</div>
+			</c:if>
 			<div>
 				<!-- 显示评论内容 -->
 				<c:forEach items="${li}" var="comment">
-					<h5>${comment.user.username} ${comment.created}</h5>
+					<h5>评论人:${comment.user.username} 评论时间:<fmt:formatDate value="${comment.created}" pattern="yyyy-MM-dd HH:mm:ss"/></h5>
 				    
 				    ${comment.content }
 				  <hr>
 				</c:forEach>
+			</div>
+		</div>
+			</div>
+			<div class="col-md-3">
+			<h6>评论排行榜</h6>
+			<div class="card" style="width: 18rem;">
+					<c:forEach items="${ss }" var="ss" varStatus="i">
+					<div class="card-body">
+						<p class="card-text">${i.count }.${ss.title }</p>
+					</div>
+					</c:forEach>
+				</div>
 			</div>
 		</div>
 	</div>

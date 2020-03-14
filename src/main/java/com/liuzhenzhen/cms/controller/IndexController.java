@@ -56,11 +56,15 @@ public class IndexController {
 	}
 	
 	@RequestMapping("show")
-	public String show(Article article,Model m) {
+	public String show(Article article,Model m,@RequestParam(defaultValue = "1")int page) {
 		List<Comment> list=comment.select(article);
 		Article show = art.show(article);
+		PageHelper.startPage(page, 5);
+		List<Article> lis=art.coCount();
+		PageInfo<Article> pages=new PageInfo<Article>(lis);
 		m.addAttribute("g", show);
 		m.addAttribute("li", list);
+		m.addAttribute("ss", lis);
 		return "index/show";
 	}
 }
