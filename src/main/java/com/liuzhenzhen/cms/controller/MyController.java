@@ -22,9 +22,11 @@ import com.github.pagehelper.PageInfo;
 import com.liuzhenzhen.cms.entity.Article;
 import com.liuzhenzhen.cms.entity.Category;
 import com.liuzhenzhen.cms.entity.Channel;
+import com.liuzhenzhen.cms.entity.Collect;
 import com.liuzhenzhen.cms.entity.User;
 import com.liuzhenzhen.cms.service.ArticleService;
 import com.liuzhenzhen.cms.service.ChannelService;
+import com.liuzhenzhen.cms.service.CollectService;
 
 @RequestMapping("my")
 @Controller
@@ -33,7 +35,8 @@ public class MyController {
 	private ArticleService articleService;
 	@Autowired
 	private ChannelService channelService;
-	
+	@Autowired
+	private CollectService collects;
 	@RequestMapping(value = {"","/","index"})
 	public String index() {
 		
@@ -89,9 +92,6 @@ public class MyController {
 			}
 			article.setPicture(newFilename);//封装上传的文件名称
 		}
-		
-		
-		
 		//封装文件的基本属性
 		User user = (User) session.getAttribute("user");
 		article.setUserId(user.getId());	
@@ -110,5 +110,11 @@ public class MyController {
 	public Article cha(Integer idd) {
 		return articleService.cha(idd);
 	}
-	
+	@RequestMapping("collect")
+	public String collect(HttpSession session,Model m) {
+		User user=(User) session.getAttribute("user");
+		List<Collect> list=collects.select(user.getId());
+		m.addAttribute("g", list);
+		return "my/collect";
+	}
 }

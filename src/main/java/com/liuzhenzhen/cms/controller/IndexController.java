@@ -1,7 +1,10 @@
 package com.liuzhenzhen.cms.controller;
 
 
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,10 +18,13 @@ import com.github.pagehelper.PageInfo;
 import com.liuzhenzhen.cms.entity.Article;
 import com.liuzhenzhen.cms.entity.Category;
 import com.liuzhenzhen.cms.entity.Channel;
+import com.liuzhenzhen.cms.entity.Collect;
 import com.liuzhenzhen.cms.entity.Comment;
 import com.liuzhenzhen.cms.entity.Slide;
+import com.liuzhenzhen.cms.entity.User;
 import com.liuzhenzhen.cms.service.ArticleService;
 import com.liuzhenzhen.cms.service.ChannelService;
+import com.liuzhenzhen.cms.service.CollectService;
 import com.liuzhenzhen.cms.service.CommentService;
 import com.liuzhenzhen.cms.service.SlideService;
 
@@ -32,6 +38,8 @@ public class IndexController {
 	private SlideService slide;
 	@Autowired
 	private CommentService comment;
+	@Autowired
+	private CollectService collects;
 	@RequestMapping(value = {"","/","index"})
 	public String index(Model model,Article article,@RequestParam(defaultValue = "1")int page) {
 		List<Channel> selects = channelService.selects();
@@ -56,15 +64,37 @@ public class IndexController {
 	}
 	
 	@RequestMapping("show")
-	public String show(Article article,Model m,@RequestParam(defaultValue = "1")int page) {
+	public String show(Article article,Model m,@RequestParam(defaultValue = "1")int page,HttpSession session) {
 		List<Comment> list=comment.select(article);
 		Article show = art.show(article);
 		PageHelper.startPage(page, 5);
 		List<Article> lis=art.coCount();
 		PageInfo<Article> pages=new PageInfo<Article>(lis);
+		User user = (User) session.getAttribute("user");
+		Collect collect=null;
+		if(user!=null) {
+			collect=collects.selectByTitleAndUserId(show.getTitle(), user.getId());
+		}
 		m.addAttribute("g", show);
 		m.addAttribute("li", list);
 		m.addAttribute("ss", lis);
+		m.addAttribute("co", collect);
 		return "index/show";
+	}
+	@RequestMapping("collect")
+	@ResponseBody
+	public int collect(Collect collect,HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		if(user==null) {
+			return 0;
+		}
+		collect.setUserId(user.getId());
+		collect.setCreated(new Date());
+		return collects.insert(collect);
+	}
+	@RequestMapping("deleteCollect")
+	@ResponseBody
+	public int deleteCollect(Integer id) {
+		return collects.delete(id);
 	}
 }

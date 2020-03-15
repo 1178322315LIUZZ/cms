@@ -33,6 +33,14 @@
 			<h1>标题:${g.title }</h1>
 			<h6>作者:${g.user.username }</h6>
 			${g.content }
+			<div>
+			<c:if test="${co==null }">
+				<a href="javascript:show()">☆未收藏</a>
+			</c:if>
+			<c:if test="${co!=null }">
+				<a href="javascript:deletes()">★取消收藏</a>
+			</c:if>
+			</div>
 			<hr>
 			<c:if test="${sessionScope.user!=null }">
 				<!-- 文章评论 -->
@@ -79,7 +87,36 @@
 					}
 				})
 			}
-		
+		function show() {
+			var text='${g.title}'
+			var url=location.href
+			$.post(
+					"/collect",
+					{text:text,url:url},
+					function(as) {
+						if(as>0){
+							alert("收藏成功")
+							location.reload();
+						}else{
+							alert("收藏失败，登陆后才可以收藏")
+						}
+					})
+		}
+		function deletes() {
+			var id='${co.id}'
+			$.post(
+					"/deleteCollect",
+					{id:id},
+					function(as) {
+						if(as>0){
+							alert("取消成功")
+							location.reload();
+						}else{
+							alert("收藏失败，登陆后才可以取消")
+						}
+					})
+			
+		}
 		</script>
 </body>
 </html>
