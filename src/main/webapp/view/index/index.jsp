@@ -133,6 +133,21 @@
 				</div>
 			</div>
 			<div class="col-md-3">
+				<div class="card" style="width: 18rem; margin-top: 6px">
+					<div class="card-header">问卷调查</div>
+					<div class="card-body">
+						<!-- 问卷调查 --10篇 -->
+						<c:forEach items="${ll}" var="voteArticle">
+							<div class="media">
+							
+								<div class="media-body">
+									<p><a href="/voteDetail?id=${voteArticle.id }" target="_blank">${voteArticle.title }</a></p>
+								</div>
+							</div>
+							<hr>
+						</c:forEach>
+					</div>
+				</div>
 				<div class="card-header">最新文章</div>
 				<div class="card" style="width: 18rem;">
 					<c:forEach items="${ss }" var="ss">

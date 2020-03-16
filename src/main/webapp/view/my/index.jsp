@@ -30,7 +30,7 @@
 					<li class="list-group-item list-group-item-action list-group-item-primary"><a href="#" data="/my/articles"style="text-decoration:none">我的文章</a></li>
 					<li class="list-group-item list-group-item-action list-group-item-secondary"><a href="#" data="/my/public"style="text-decoration:none">发布文章</a></li>
 					<li class="list-group-item list-group-item-action list-group-item-success"><a href="#" data="/my/collect" style="text-decoration:none">我的收藏</a></li>
-					<li class="list-group-item list-group-item-action list-group-item-danger"><a href="#" style="text-decoration:none">我的评论</a></li>
+					<li class="list-group-item list-group-item-action list-group-item-danger"><a href="#" data="/my/vote" style="text-decoration:none">发起投票</a></li>
 					<li class="list-group-item list-group-item-action list-group-item-warning"><a href="#" style="text-decoration:none">个人信息</a></li>
 				</ul>
 			</div>

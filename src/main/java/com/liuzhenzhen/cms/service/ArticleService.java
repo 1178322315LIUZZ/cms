@@ -30,4 +30,8 @@ public interface ArticleService {
 
 	List<Article> coCount();
 
+	List<Article> selectss(Article article3);
+
+	Article sess(Integer id);
+
 }

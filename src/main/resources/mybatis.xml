@@ -11,7 +11,10 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
  <typeAliases>
    <package name="com.liuzhenzhen.cms.entity"/>   
  </typeAliases>
- 
+ 	<typeHandlers>
+ 		<typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler"
+ 		javaType="com.liuzhenzhen.cms.entity.ContentType"/>
+ 	</typeHandlers>
  
  <!-- 配置分页助手拦截器 -->
 <plugins>

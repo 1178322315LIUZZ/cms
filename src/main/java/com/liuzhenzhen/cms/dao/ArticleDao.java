@@ -33,4 +33,8 @@ public interface ArticleDao {
 
 	List<Article> coCount();
 
+	List<Article> selectss(Article article3);
+
+	Article sess(@Param("id")Integer id);
+
 }

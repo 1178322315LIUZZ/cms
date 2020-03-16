@@ -72,6 +72,16 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleDao.coCount();
 	}
 
+	public List<Article> selectss(Article article3) {
+		// TODO Auto-generated method stub
+		return articleDao.selectss(article3);
+	}
+
+	public Article sess(Integer id) {
+		// TODO Auto-generated method stub
+		return articleDao.sess(id);
+	}
+
 	
 	
 }

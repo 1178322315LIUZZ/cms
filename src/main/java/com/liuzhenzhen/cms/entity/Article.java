@@ -34,42 +34,12 @@ public class Article implements Serializable{
 	private Channel channel;
 	private Category category;
 	private User user;
-	private Integer contentType;
+	private ContentType contentType;
 
 	private String keywords;
 
 	private String original;
-	
-	public Integer getCocount() {
-		return cocount;
-	}
-	public void setCocount(Integer cocount) {
-		this.cocount = cocount;
-	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-	public Integer getContentType() {
-		return contentType;
-	}
-	public void setContentType(Integer contentType) {
-		this.contentType = contentType;
-	}
-	public String getKeywords() {
-		return keywords;
-	}
-	public void setKeywords(String keywords) {
-		this.keywords = keywords;
-	}
-	public String getOriginal() {
-		return original;
-	}
-	public void setOriginal(String original) {
-		this.original = original;
-	}
+	private ContentType conType;
 	public Integer getId() {
 		return id;
 	}
@@ -81,6 +51,18 @@ public class Article implements Serializable{
 	}
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	public String getSummary() {
+		return summary;
+	}
+	public void setSummary(String summary) {
+		this.summary = summary;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
 	}
 	public String getPicture() {
 		return picture;
@@ -106,18 +88,6 @@ public class Article implements Serializable{
 	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
-	}
-	public String getSummary() {
-		return summary;
-	}
-	public void setSummary(String summary) {
-		this.summary = summary;
-	}
 	public Integer getHits() {
 		return hits;
 	}
@@ -142,6 +112,12 @@ public class Article implements Serializable{
 	public void setDeleted(Integer deleted) {
 		this.deleted = deleted;
 	}
+	public Integer getCocount() {
+		return cocount;
+	}
+	public void setCocount(Integer cocount) {
+		this.cocount = cocount;
+	}
 	public Date getCreated() {
 		return created;
 	}
@@ -154,30 +130,6 @@ public class Article implements Serializable{
 	public void setUpdated(Date updated) {
 		this.updated = updated;
 	}
-//	public Integer getContentType() {
-//		return contentType;
-//	}
-//	public void setContentType(Integer contentType) {
-//		this.contentType = contentType;
-//	}
-//	public String getKeywords() {
-//		return keywords;
-//	}
-//	public void setKeywords(String keywords) {
-//		this.keywords = keywords;
-//	}
-//	public String getOriginal() {
-//		return original;
-//	}
-//	public void setOriginal(String original) {
-//		this.original = original;
-//	}
-//	public User getUser() {
-//		return user;
-//	}
-//	public void setUser(User user) {
-//		this.user = user;
-//	}
 	public Channel getChannel() {
 		return channel;
 	}
@@ -190,41 +142,45 @@ public class Article implements Serializable{
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-	public Article(Integer id, String title, String picture, Integer channelId, Integer categoryId, Integer userId,
-			String content, String summary, Integer hits, Integer hot, Integer status, Integer deleted, Date created,
-			Date updated, Integer contentType, String keywords, String original, User user, Channel channel,
-			Category category) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.picture = picture;
-		this.channelId = channelId;
-		this.categoryId = categoryId;
-		this.userId = userId;
-		this.content = content;
-		this.summary = summary;
-		this.hits = hits;
-		this.hot = hot;
-		this.status = status;
-		this.deleted = deleted;
-		this.created = created;
-		this.updated = updated;
-//		this.contentType = contentType;
-//		this.keywords = keywords;
-//		this.original = original;
-//		this.user = user;
-		this.channel = channel;
-		this.category = category;
+	public User getUser() {
+		return user;
 	}
-	public Article() {
-		super();
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public ContentType getContentType() {
+		return contentType;
+	}
+	public void setContentType(ContentType contentType) {
+		this.contentType = contentType;
+	}
+	public String getKeywords() {
+		return keywords;
+	}
+	public void setKeywords(String keywords) {
+		this.keywords = keywords;
+	}
+	public String getOriginal() {
+		return original;
+	}
+	public void setOriginal(String original) {
+		this.original = original;
+	}
+	public ContentType getConType() {
+		return conType;
+	}
+	public void setConType(ContentType conType) {
+		this.conType = conType;
 	}
 	@Override
 	public String toString() {
-		return "Article [id=" + id + ", title=" + title + ", picture=" + picture + ", channelId=" + channelId
-				+ ", categoryId=" + categoryId + ", userId=" + userId + ", content=" + content + ", summary=" + summary
-				+ ", hits=" + hits + ", hot=" + hot + ", status=" + status + ", deleted=" + deleted + ", created="
-				+ created + ", updated=" + updated + ", contentType="  + ", channel=" + channel + ", category=" + category + "]";
+		return "Article [id=" + id + ", title=" + title + ", summary=" + summary + ", content=" + content + ", picture="
+				+ picture + ", channelId=" + channelId + ", categoryId=" + categoryId + ", userId=" + userId + ", hits="
+				+ hits + ", hot=" + hot + ", status=" + status + ", deleted=" + deleted + ", cocount=" + cocount
+				+ ", created=" + created + ", updated=" + updated + ", channel=" + channel + ", category=" + category
+				+ ", user=" + user + ", contentType=" + contentType + ", keywords=" + keywords + ", original="
+				+ original + ", conType=" + conType + "]";
 	}
-    
+	
+	
 }

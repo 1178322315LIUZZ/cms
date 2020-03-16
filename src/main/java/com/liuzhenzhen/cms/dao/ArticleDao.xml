@@ -92,7 +92,7 @@
 	</select>
 	
 	<select id="selectt" resultMap="smap">
-		select * from cms_article where status=#{status}
+		select * from cms_article where status=#{status} and content_type = 0
 		order by created desc
 	</select>
 	
@@ -100,10 +100,21 @@
 		select * from cms_article 
 		order by cocount desc
 	</select>
+	<select id="selectss" resultMap="smap">
+		select * from cms_article
+		<where>
+			<if test="status !=null">
+				and status=#{status}
+			</if>
+			<if test="contentType !=null">
+				and content_type = #{contentType}
+			</if>
+		</where>
+	</select>
 	
-	
-	
-	
+	<select id="sess" resultMap="smap">
+		select * from cms_article where id=#{id}
+	</select>
 	
 	
 	
