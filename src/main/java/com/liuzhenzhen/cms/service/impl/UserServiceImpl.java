@@ -43,13 +43,13 @@ public class UserServiceImpl implements UserService {
 		}
 		User yan = this.yan(user.getUsername());
 		if (yan != null) {
-			throw new CMSException("用户名已存在");
+			throw new CMSException("用户已经存在");
 		}
 		if (!StringUtil.hasText(user.getPassword())) {
 			throw new CMSException("密码不能为空");
 		}
 		if (!(user.getPassword().length() >= 6 && user.getPassword().length() <= 10)) {
-			throw new CMSException("密码的长度在6-10之间");
+			throw new CMSException("密码长度在6-10之间");
 		}
 		user.setPassword(Md5Util.encode(user.getPassword()));
 		// 初始用户的注册信息----
@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService {
 		// 2 检查用户名是否存在
 		User u = this.yan(user.getUsername());
 		if (null == u) {
-			throw new CMSException("该用户名不存在");
+			throw new CMSException("该用户不存在");
 		}
 		if (u.getLocked() == 1) {
 			throw new CMSException("该用户已禁用");
@@ -81,7 +81,7 @@ public class UserServiceImpl implements UserService {
 		// 3 比较密码是否一致 //数据库存储的是 加密后的密码
 		// 对登录的密码再进行加密 再和数据库的密码进行比较
 		if (!Md5Util.encode(user.getPassword()).equals(u.getPassword()))
-			throw new CMSException("密码不正确，请重新录入");
+			throw new CMSException("密码不正确，请重新输入");
 		return u;
 	}
 
@@ -91,7 +91,7 @@ public class UserServiceImpl implements UserService {
 		// 2 检查用户名是否存在
 		User u = this.yan(user.getUsername());
 		if (null == u) {
-			throw new CMSException("该用户名不存在");
+			throw new CMSException("该用户不存在");
 		}
 		if (u.getRole() != 1) {
 			throw new CMSException("该用户不是管理员");
@@ -99,7 +99,7 @@ public class UserServiceImpl implements UserService {
 		// 3 比较密码是否一致 //数据库存储的是 加密后的密码
 		// 对登录的密码再进行加密 再和数据库的密码进行比较
 		if (!Md5Util.encode(user.getPassword()).equals(u.getPassword()))
-			throw new CMSException("密码不正确，请重新录入");
+			throw new CMSException("密码不正确,请重新输入");
 		return u;
 	}
 }
