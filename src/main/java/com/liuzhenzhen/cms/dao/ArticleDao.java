@@ -2,6 +2,7 @@ package com.liuzhenzhen.cms.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Update;
 
@@ -36,5 +37,21 @@ public interface ArticleDao {
 	List<Article> selectss(Article article3);
 
 	Article sess(@Param("id")Integer id);
+	@Insert("update cms_article set hits=hits+1 where id=#{idd}")
+	int click(@Param("idd")Integer id);
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

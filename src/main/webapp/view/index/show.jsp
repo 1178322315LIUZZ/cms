@@ -9,6 +9,8 @@
 <meta charset="UTF-8">
 <!--??  -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="${g.keywords }">
+<meta name="descrption" content="${g.original }">
 <title>${g.title }</title>
 <%-- <link href="<%=request.getContextPath()%>/css/index3.css" rel="stylesheet">  --%>
 <script type="text/javascript"
@@ -117,6 +119,17 @@
 					})
 			
 		}
+		var id=${g.id}
+		 $.post(
+				"/click",
+				{id:id},
+				function(asr) {
+					if(asr>0){
+						
+					}else{
+						
+					}
+				}) 
 		</script>
 </body>
 </html>

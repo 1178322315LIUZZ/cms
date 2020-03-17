@@ -34,4 +34,6 @@ public interface ArticleService {
 
 	Article sess(Integer id);
 
+	int click(Integer id);
+
 }

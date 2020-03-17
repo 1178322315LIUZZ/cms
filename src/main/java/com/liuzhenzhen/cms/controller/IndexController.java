@@ -149,4 +149,16 @@ public class IndexController {
 			}
 			return votes.insert(vote);
 		}
+		
+		//添加点击量
+		@RequestMapping("click")
+		@ResponseBody
+		public int click(HttpSession session,Integer id) {
+			User user = (User) session.getAttribute("user");
+			if(user==null) {
+				return 0;
+			}
+			return art.click(id);
+		}
+		
 }

@@ -81,6 +81,11 @@ public class ArticleServiceImpl implements ArticleService {
 		// TODO Auto-generated method stub
 		return articleDao.sess(id);
 	}
+	//添加点击量
+	public int click(Integer id) {
+		// TODO Auto-generated method stub
+		return articleDao.click(id);
+	}
 
 	
 	
