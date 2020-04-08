@@ -2,6 +2,8 @@ package com.liuzhenzhen.cms.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import org.springframework.data.annotation.Id;
 /**
  * 
  * @ClassName: Article 
@@ -9,6 +11,10 @@ import java.util.Date;
  * @author: Lzz
  * @date: 2020年3月3日 上午11:38:19
  */
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
+@Document(indexName = "article",type = "Article")
 public class Article implements Serializable{
 	/**
 	 * @fieldName: serialVersionUID
@@ -16,10 +22,14 @@ public class Article implements Serializable{
 	 * @Description: TODO
 	 */
 	private static final long serialVersionUID = 1L;
+	@Id
 	private Integer id;//主键
+	@Field(index=true,analyzer="ik_smart",store=true,searchAnalyzer="ik_smart",type = FieldType.text)
 	private String title;//文章标题
 	private String summary;//文章摘要
+	@Field(index=true,analyzer="ik_smart",store=true,searchAnalyzer="ik_smart",type = FieldType.text)
 	private String content;//文章内容
+	@Field(index = true,analyzer = "ik_smart",store = true,searchAnalyzer ="ik_smart",type = FieldType.text )
 	private String picture;//文章的标题图片
 	private Integer channelId;//所属栏目ID
 	private Integer categoryId;//所属分类ID

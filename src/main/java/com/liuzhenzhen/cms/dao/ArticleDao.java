@@ -39,6 +39,9 @@ public interface ArticleDao {
 	Article sess(@Param("id")Integer id);
 	@Insert("update cms_article set hits=hits+1 where id=#{idd}")
 	int click(@Param("idd")Integer id);
+	//文章点击量+1
+	@Update("update cms_article set hits=#{hits} where id=#{id}")
+	void update(Article article);
 
 	
 	

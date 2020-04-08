@@ -84,6 +84,21 @@
 						</ul>
 					</div>
 				</c:if>
+					<!-- ==============================搜索框========================== -->
+							<form action="${pageContext.request.contextPath }/search" method="get">
+								<div class="input-group mb-3">
+									<input type="text" name="key" value="${key}"
+										class="form-control" placeholder="从es中搜索东西!!"
+										aria-label="Recipient's username"
+										aria-describedby="button-addon2">
+									<div class="input-group-append">
+										<button class="btn btn-outline-secondary" id="button-addon2">搜索</button>
+									</div>
+								</div>
+							</form>
+					<!-- ==========================搜索框end========================= -->
+				
+				<!--遍历轮播图  -->
 				<c:if test="${article.channelId==null }">
 					<div id="carouselExampleCaptions" class="carousel slide"
 						data-ride="carousel" style="margin-top: 5px">
@@ -180,11 +195,16 @@
 	</div>
 	<script type="text/javascript">
 		function goPage(page) {
+			var key = '${key}';
 			var channelId = '${article.channelId}';//栏目ID
 			var categoryId = '${article.categoryId}';//分类ID
 			var hot = '${article.hot}';//热点
-			location = "/?page=" + page + "&channelId=" + channelId
-					+ "&categoryId=" + categoryId + "&hot=" + hot
+			if(key!=null){
+				location= "/search?channelId=" + channelId + "&page=" + page+"&key="+key;
+			}else{
+				location = "/?page=" + page + "&channelId=" + channelId
+				+ "&categoryId=" + categoryId + "&hot=" + hot
+			}
 		}
 		//注册
 		function reg() {

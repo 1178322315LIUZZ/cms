@@ -86,6 +86,11 @@ public class ArticleServiceImpl implements ArticleService {
 		// TODO Auto-generated method stub
 		return articleDao.click(id);
 	}
+	//文章点击量+1
+	@Override
+	public void update(Article article) {
+		articleDao.update(article);
+	}
 
 	
 	

@@ -35,5 +35,7 @@ public interface ArticleService {
 	Article sess(Integer id);
 
 	int click(Integer id);
+	//文章点击量+1
+	void update(Article article);
 
 }

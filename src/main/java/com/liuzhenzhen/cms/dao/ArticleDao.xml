@@ -117,12 +117,4 @@
 	<select id="sess" resultMap="smap">
 		select * from cms_article where id=#{id}
 	</select>
-	
-	
-	
-	
-	
-	
-	
-	
 </mapper>

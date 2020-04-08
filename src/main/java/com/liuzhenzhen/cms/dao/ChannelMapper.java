@@ -1,9 +1,9 @@
-package com.zhenzhen.cms.dao;
+package com.liuzhenzhen.cms.dao;
 
 import java.util.List;
 
-import com.zhenzhen.cms.entity.Category;
-import com.zhenzhen.cms.entity.Channel;
+import com.liuzhenzhen.cms.entity.Category;
+import com.liuzhenzhen.cms.entity.Channel;
 
 public interface ChannelMapper {
 	/**
