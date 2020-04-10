@@ -47,8 +47,14 @@ public class PassportController {
 		return result;
 	}
 	@RequestMapping("deng")
-	public String deng() {
-		return "passport/login";
+	public String deng(HttpSession httpSession) {
+		User user = (User) httpSession.getAttribute("user");
+		if(user!=null) {
+			return "redirect:/";
+		}else {
+			return "passport/login";
+		}
+		
 	}
 	@PostMapping("denglu")
 	@ResponseBody

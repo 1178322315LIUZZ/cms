@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.google.gson.Gson;
+import com.liuzhenzhen.cms.dao.ArticleLight;
 import com.liuzhenzhen.cms.entity.Article;
 import com.liuzhenzhen.cms.entity.Category;
 import com.liuzhenzhen.cms.entity.Channel;
@@ -60,6 +61,8 @@ public class IndexController {
 	private VoteService votes;
 	@Autowired
 	ThreadPoolTaskExecutor executor;
+	@Autowired
+	ArticleLight articleLight;
 	//注入es依赖
 	@Autowired
 	ElasticsearchTemplate elasticsearchTemplate;
@@ -90,7 +93,11 @@ public class IndexController {
 	}
 
 	@RequestMapping(value = { "", "/", "index" })
-	public String index(Model model, Article article, @RequestParam(defaultValue = "1") int page) {
+	public String index(Model model, Article article, @RequestParam(defaultValue = "1") int page,HttpSession httpSession) {
+		User user = (User) httpSession.getAttribute("user");
+		if(user!=null) {
+			redisTemplate.opsForValue().set("request.getSession().getId()", user.toString());
+		}
 		List<Channel> range = redisTemplate.opsForList().range("cms_channels", 0, -1);
 		if (range == null || range.size() == 0) {
 			List<Channel> selects = channelService.selects();
